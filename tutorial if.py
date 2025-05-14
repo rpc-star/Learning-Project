@@ -1,6 +1,7 @@
 import math
 from functools import wraps
 import time
+from operator import length_hint
 from shutil import ReadError
 import sad
 import pickle
@@ -713,7 +714,6 @@ book2 = [("sdsdaa", 200), ("sdagf", 300), ("sdewadsw", 400)]
 book3 = [("sdsdaa", 200), ("sdagsdf", 300), ("sdewaw", 400)]
 book4 = [("sdsdsaa", 200), ("sdagf", 300), ("sdewaw", 400)]
 
-
 file = open("my_file4.txt", "wb")
 pickle.dump(book, file)
 file.close()
@@ -722,7 +722,6 @@ file = open("my_file4.txt", "rb")
 rs = pickle.load(file)
 file.close()
 print(rs)
-
 
 try:
     with open("my_file4.txt", "wb+") as file:
@@ -737,13 +736,139 @@ except:
     print("error")
 finally:
     print(file.closed)
-print(rs,rs2,rs3,  sep = "\n")
+print(rs, rs2, rs3, sep="\n")
 
-a = (x**2 for x in range(6))
+a = (x ** 2 for x in range(6))
 print(next(a), type(a))
 print(next(a), type(a))
 
+gen = (x ** 2 for x in range(6))
+for x in gen:
+    print(x)
+
+for x in gen:
+    print(x)
+
+print(list(a))
+a = (x * 2 for x in range(6))
+print(list(a))
+
+b = (x ** 2 for x in range(6))
+print(set(b))
+
+print(sum((x ** 2 for x in range(6))))
+print(max((x ** 2 for x in range(6))))
+
+lst = (x for x in range(10000000000000000))
+print(next(lst))
+print(next(lst))
+print(next(lst))
+print(next(lst))
+
+# for x in lst:
+# print(x, end=" ")
+# if x > 200:
+#     break
+# lst2 = list(range(10000000000000000))
+
+x = (x for x in range(10, 20))
+f = list(x)
+print(len(f))
 
 
+def get_list():
+    for x in [1, 2, 3, 4]:
+        yield x
 
+
+a = get_list()
+# print(next(a))
+# print(next(a))
+# print(next(a))
+# print(next(a))
+
+for x in a:
+    print(x)
+
+
+def get_arf():
+    for x in range(1, 10):
+        a = range(x, 11)
+        yield sum(a) / len(a)
+
+
+i = get_arf()
+# for x in i:
+# print(x, end=", ")
+print(list(i))
+
+
+# def file_world(f, word):
+#  for x in f:
+#   if word == "pupa":
+#      yield word
+
+
+def find_world(f, word):
+    g_indx = 0
+    for line in f:
+        indx = 0
+        while (indx != -1):
+            indx = line.find(word, indx)
+            if indx > -1:
+                yield g_indx + indx
+                indx += 1
+
+        g_indx += len(line)
+
+
+try:
+    with open("fille.txt", encoding="utf-8") as file:
+        file.seek(0)
+        a = find_world(file, "pupa")
+        print(list(a))
+except FileNotFoundError:
+    print("file non found")
+except:
+    print("ERROR")
+finally:
+    print(file.closed)
+
+b = map(int, ["1", 2, "3", 4, 5])
+# print(next(b))
+# print(next(b))
+# print(next(b))
+# print(next(b))
+# print(next(b))
+
+for x in b:
+    print(x)
+
+a = (int(x) for x in ["1", "2", "3", "4", "5"])
+
+print(list(a))
+
+cities = ["Moskva","Nigjni Novgorod","Saint Peterburg"]
+
+a = map(len, cities)
+print(list(a ))
+
+a = map(str.upper, cities)
+print(list(a))
+
+def symbols(s):
+    return list(s.lower())
+
+a = map(lambda s: list(s.lower()), cities)
+print(list(a))
+
+a = map(lambda s: s[::-1], cities)
+print(list(a))
+
+s = map(int, input().split())
+a = list(s)
+print(a)
+
+s = list(map(int, input().split()))
+print(s)
 
