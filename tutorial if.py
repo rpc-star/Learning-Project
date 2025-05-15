@@ -859,16 +859,63 @@ print(list(a))
 def symbols(s):
     return list(s.lower())
 
-a = map(lambda s: list(s.lower()), cities)
+#a = map(lambda s: list(s.lower()), cities)
+#print(list(a))
+
+#a = map(lambda s: s[::-1], cities)
+#print(list(a))
+
+#s = map(int, input().split())
+#a = list(s)
+#print(a)
+
+#s = list(map(int, input().split()))
+#print(s)
+
+a = [1,2,3,4,5,6,7,8,9,10]
+
+b = filter(lambda x: x %2 != 0, a)
+print(list(b))
+
+def is_prost(x):
+    d = x - 1
+    if d < 0:
+        return False
+    while d > 1:
+        if x % d == 0:
+            return False
+        d -= 1
+    return True
+
+i = filter(is_prost, a)
+print(list(i))
+
+
+cities = ["Moskva","Nigjn2i Novgorod","Saint Peterburg"]
+
+a = filter(str.isalpha, cities)
 print(list(a))
 
-a = map(lambda s: s[::-1], cities)
-print(list(a))
+a = [1,2,3,4,5,6,7,8,9,10]
 
-s = map(int, input().split())
-a = list(s)
-print(a)
+b = filter(is_prost, a)
+s = filter(lambda x: x % 2 == 0, b)
+print(list(s))
 
-s = list(map(int, input().split()))
-print(s)
+b1 = filter(lambda x: x % 2 != 0, filter(is_prost,a))
+print(tuple(b1))
+
+def get_prost(x):
+    d = x - 1
+    if d < 0 or x % 2 == 0:
+        return False
+    while d > 1:
+        if x % d == 0:
+            return False
+        d -= 1
+    return True
+
+b2 = filter(get_prost, a)
+print(tuple(b2))
+
 
