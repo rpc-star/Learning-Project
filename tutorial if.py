@@ -848,34 +848,37 @@ a = (int(x) for x in ["1", "2", "3", "4", "5"])
 
 print(list(a))
 
-cities = ["Moskva","Nigjni Novgorod","Saint Peterburg"]
+cities = ["Moskva", "Nigjni Novgorod", "Saint Peterburg"]
 
 a = map(len, cities)
-print(list(a ))
+print(list(a))
 
 a = map(str.upper, cities)
 print(list(a))
 
+
 def symbols(s):
     return list(s.lower())
 
-#a = map(lambda s: list(s.lower()), cities)
-#print(list(a))
 
-#a = map(lambda s: s[::-1], cities)
-#print(list(a))
+# a = map(lambda s: list(s.lower()), cities)
+# print(list(a))
 
-#s = map(int, input().split())
-#a = list(s)
-#print(a)
+# a = map(lambda s: s[::-1], cities)
+# print(list(a))
 
-#s = list(map(int, input().split()))
-#print(s)
+# s = map(int, input().split())
+# a = list(s)
+# print(a)
 
-a = [1,2,3,4,5,6,7,8,9,10]
+# s = list(map(int, input().split()))
+# print(s)
 
-b = filter(lambda x: x %2 != 0, a)
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+b = filter(lambda x: x % 2 != 0, a)
 print(list(b))
+
 
 def is_prost(x):
     d = x - 1
@@ -887,23 +890,24 @@ def is_prost(x):
         d -= 1
     return True
 
+
 i = filter(is_prost, a)
 print(list(i))
 
-
-cities = ["Moskva","Nigjn2i Novgorod","Saint Peterburg"]
+cities = ["Moskva", "Nigjn2i Novgorod", "Saint Peterburg"]
 
 a = filter(str.isalpha, cities)
 print(list(a))
 
-a = [1,2,3,4,5,6,7,8,9,10]
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 b = filter(is_prost, a)
 s = filter(lambda x: x % 2 == 0, b)
 print(list(s))
 
-b1 = filter(lambda x: x % 2 != 0, filter(is_prost,a))
+b1 = filter(lambda x: x % 2 != 0, filter(is_prost, a))
 print(tuple(b1))
+
 
 def get_prost(x):
     d = x - 1
@@ -915,7 +919,88 @@ def get_prost(x):
         d -= 1
     return True
 
+
 b2 = filter(get_prost, a)
 print(tuple(b2))
 
+a = [1, 2, 3, 4]
+b = [5, 6, 7, 8, 9, 10]
+
+z = zip(a, b)
+print(next(z))
+print(next(z))
+
+for x in z:
+    print(x)
+
+a = [1, 2, 3, 4]
+b = [5, 6, 7, 8, 9, 10]
+c = "python"
+
+z = zip(a, b, c)
+# for x in z:
+# print(x, end=" ")
+
+# for v1,v2,v3 in z:
+# print(v1, v2, v3)
+
+# z1,z2,z3,z4 = zip(a,b,c)
+# z1,*z2 = zip(a,b,c)
+# print(z1, z2)
+# a = list(z)
+z1, z2, z3 = zip(*z)
+print(z1, z2, z3, sep="\n")
+
+a = [1, 5, 2, 76, -123, 35, 23]
+a.sort()
+print(a)
+
+a1 = ("sdfd", "sd", "sdkdfvc")
+print(sorted(a1))
+
+print(sorted("python"))
+a2 = [1, 5, 2, 76, -123, 35, 23]
+print(sorted(a2, reverse=True))
+
+d = {"river": "река", "mountin": "гора", "cloud": "облако", "butterfly": "бабочка"}
+
+print(sorted(d))
+print(sorted(d.values()))
+a3 = sorted(d.items())
+
+print(dict(a3))
+
+
+def get_numb(x):
+    return x % 2
+
+
+a = [4, 3, -10, 1, 7, 12]
+#b = sorted(a, key=lambda x: x % 2)
+#print(b)
+b = [4, 3, -10, 1, 7, 12]
+#b.sort(key = lambda x: x % 2)
+print(b)
+
+
+def key_sort(x):
+    return x if x % 2 == 0 else 100 + x
+
+b.sort(key = key_sort)
+print(b)
+
+cities = ["Moskva","Nigjni Novgorod","Saint Peterburg","Tumen", "Luxenburg"]
+
+#v1 = sorted(cities, key = len)
+#print(sorted(cities, key = lambda x: x[-1]))
+print(sorted(cities, key = lambda x: x[0]))
+
+books = (("Евгений онегин", "Пушкин А.С.", 200),
+         ("Муму", "Тургенев И.С.", 250),
+         ("Мастер и Маргарита", "Булгаков м.А.", 500),
+         ("мертвые души", "Гоголь Н.В.", 190)
+         )
+
+g = sorted(books, key = lambda x: x[-1])
+print(g)
 
