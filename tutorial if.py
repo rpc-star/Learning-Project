@@ -1004,3 +1004,52 @@ books = (("Евгений онегин", "Пушкин А.С.", 200),
 g = sorted(books, key = lambda x: x[-1])
 print(g)
 
+a = 5
+print(isinstance(a,int))
+
+b = True
+
+print(isinstance(b, bool))
+
+print(isinstance(a, int))
+
+print(type(b) == int)
+
+
+print(type(b) is int)
+print(type(b) is bool)
+
+print(type(b) in (bool, float, str, set))
+
+data = (4.5, 8.7, True, "books", 8, 10, -11, [True,False])
+
+s = 0
+
+for x in data:
+    if isinstance(x, float):
+        s += x
+print(s)
+
+s1 = sum(filter(lambda x: isinstance(x, float), data))
+print(s1)
+
+
+s2 = sum(filter(lambda x: type(x) is int, data))
+print(s2)
+
+
+a4 = 5.5
+
+print(isinstance(a, (int, float)))
+
+
+
+
+
+
+
+
+
+
+
+
