@@ -1043,8 +1043,10 @@ a4 = 5.5
 print(isinstance(a, (int, float)))
 
 
+aa4 = [False   , True, True, True]
 
-
+b = all(aa4)
+print(b)
 
 
 
