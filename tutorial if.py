@@ -3,6 +3,8 @@ from functools import wraps
 import time
 from operator import length_hint
 from shutil import ReadError
+from traceback import print_tb
+
 import sad
 import pickle
 
@@ -976,24 +978,25 @@ def get_numb(x):
 
 
 a = [4, 3, -10, 1, 7, 12]
-#b = sorted(a, key=lambda x: x % 2)
-#print(b)
+# b = sorted(a, key=lambda x: x % 2)
+# print(b)
 b = [4, 3, -10, 1, 7, 12]
-#b.sort(key = lambda x: x % 2)
+# b.sort(key = lambda x: x % 2)
 print(b)
 
 
 def key_sort(x):
     return x if x % 2 == 0 else 100 + x
 
-b.sort(key = key_sort)
+
+b.sort(key=key_sort)
 print(b)
 
-cities = ["Moskva","Nigjni Novgorod","Saint Peterburg","Tumen", "Luxenburg"]
+cities = ["Moskva", "Nigjni Novgorod", "Saint Peterburg", "Tumen", "Luxenburg"]
 
-#v1 = sorted(cities, key = len)
-#print(sorted(cities, key = lambda x: x[-1]))
-print(sorted(cities, key = lambda x: x[0]))
+# v1 = sorted(cities, key = len)
+# print(sorted(cities, key = lambda x: x[-1]))
+print(sorted(cities, key=lambda x: x[0]))
 
 books = (("Евгений онегин", "Пушкин А.С.", 200),
          ("Муму", "Тургенев И.С.", 250),
@@ -1001,11 +1004,11 @@ books = (("Евгений онегин", "Пушкин А.С.", 200),
          ("мертвые души", "Гоголь Н.В.", 190)
          )
 
-g = sorted(books, key = lambda x: x[-1])
+g = sorted(books, key=lambda x: x[-1])
 print(g)
 
 a = 5
-print(isinstance(a,int))
+print(isinstance(a, int))
 
 b = True
 
@@ -1015,13 +1018,12 @@ print(isinstance(a, int))
 
 print(type(b) == int)
 
-
 print(type(b) is int)
 print(type(b) is bool)
 
 print(type(b) in (bool, float, str, set))
 
-data = (4.5, 8.7, True, "books", 8, 10, -11, [True,False])
+data = (4.5, 8.7, True, "books", 8, 10, -11, [True, False])
 
 s = 0
 
@@ -1033,20 +1035,73 @@ print(s)
 s1 = sum(filter(lambda x: isinstance(x, float), data))
 print(s1)
 
-
 s2 = sum(filter(lambda x: type(x) is int, data))
 print(s2)
-
 
 a4 = 5.5
 
 print(isinstance(a, (int, float)))
 
-
-aa4 = [False   , True, True, True]
+aa4 = [False, True, True, True]
 
 b = all(aa4)
 print(b)
+
+lst = [0, 4.5, 8.7, True, "books", 8, 10, -11,"     ", [True, False]]
+
+all_res = True
+
+for x in lst:
+    all_res = all_res and bool(x)
+print(all_res)
+
+all_res =  False
+
+for x in lst:
+    all_res = all_res or bool(x)
+
+print(all_res)
+
+
+lst2 = [0, 0,0,0,0,0]
+
+all_res = True
+for x in lst2:
+    all_res = all_res or bool(x)
+print(all_res)
+
+p = ["x", "x", "o", "o", "x", "o","x","x","x"]
+
+raw = all(map(lambda x: x == "x", p[:3]))
+raw2 = all(map(lambda x: x =="x", p[3:6]))
+raw3 = all(map(lambda x: x == "x", p[6:]))
+
+print(raw, raw2, raw3, sep="          ")
+
+def get_x(a):
+    return a == "x"
+
+raw = all(map(get_x, p[:3]))
+raw2 = all(map(get_x, p[3:6]))
+raw3 = all(map(get_x, p[6:]))
+print(raw, raw2, raw3, sep = "          ")
+
+col = all(map(get_x, p[::3]))
+col2 = all(map(get_x, p[1::3]))
+col3 = all(map(get_x, p[2::3]))
+print(col, col2, col3, sep="\n")
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
