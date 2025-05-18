@@ -1070,7 +1070,7 @@ for x in lst2:
     all_res = all_res or bool(x)
 print(all_res)
 
-p = ["x", "x", "o", "o", "x", "o","x","x","x"]
+p = ["x", "x", "x", "o", "x", "o","x","x","x"]
 
 raw = all(map(lambda x: x == "x", p[:3]))
 raw2 = all(map(lambda x: x =="x", p[3:6]))
@@ -1086,13 +1086,15 @@ raw2 = all(map(get_x, p[3:6]))
 raw3 = all(map(get_x, p[6:]))
 print(raw, raw2, raw3, sep = "          ")
 
-col = all(map(get_x, p[::3]))
+col = all(map(get_x, p[::2]))
 col2 = all(map(get_x, p[1::3]))
 col3 = all(map(get_x, p[2::3]))
 print(col, col2, col3, sep="\n")
 
+dia = all(map(get_x, p[0:9:4]))
+dia2 = all(map(get_x, p[2:7:2]))
 
-
+print(dia, dia2)
 
 
 
