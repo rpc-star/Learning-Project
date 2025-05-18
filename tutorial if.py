@@ -2,11 +2,15 @@ import math
 from functools import wraps
 import time
 from operator import length_hint
+from pickle import TUPLE
 from shutil import ReadError
 from traceback import print_tb
-
 import sad
 import pickle
+import random
+import pprint
+
+
 
 # if 5 <= x <= 7:
 # print("x в диапазоне <5> <7>")
@@ -1047,7 +1051,7 @@ aa4 = [False, True, True, True]
 b = all(aa4)
 print(b)
 
-lst = [0, 4.5, 8.7, True, "books", 8, 10, -11,"     ", [True, False]]
+lst = [0, 4.5, 8.7, True, "books", 8, 10, -11, "     ", [True, False]]
 
 all_res = True
 
@@ -1055,36 +1059,37 @@ for x in lst:
     all_res = all_res and bool(x)
 print(all_res)
 
-all_res =  False
+all_res = False
 
 for x in lst:
     all_res = all_res or bool(x)
 
 print(all_res)
 
-
-lst2 = [0, 0,0,0,0,0]
+lst2 = [0, 0, 0, 0, 0, 0]
 
 all_res = True
 for x in lst2:
     all_res = all_res or bool(x)
 print(all_res)
 
-p = ["x", "x", "x", "o", "x", "o","x","x","x"]
+p = ["x", "x", "x", "o", "x", "o", "x", "x", "x"]
 
 raw = all(map(lambda x: x == "x", p[:3]))
-raw2 = all(map(lambda x: x =="x", p[3:6]))
+raw2 = all(map(lambda x: x == "x", p[3:6]))
 raw3 = all(map(lambda x: x == "x", p[6:]))
 
 print(raw, raw2, raw3, sep="          ")
 
+
 def get_x(a):
     return a == "x"
+
 
 raw = all(map(get_x, p[:3]))
 raw2 = all(map(get_x, p[3:6]))
 raw3 = all(map(get_x, p[6:]))
-print(raw, raw2, raw3, sep = "          ")
+print(raw, raw2, raw3, sep="          ")
 
 col = all(map(get_x, p[::2]))
 col2 = all(map(get_x, p[1::3]))
@@ -1095,6 +1100,123 @@ dia = all(map(get_x, p[0:9:4]))
 dia2 = all(map(get_x, p[2:7:2]))
 
 print(dia, dia2)
+
+a = (5e2)
+print(a)
+print(10e23)
+
+a_1001101001 = 1 * (2 ** 9) + 1 * (2 ** 6) + 1 * (2 ** 5) + 1 * (2 ** 3) + 1 * (2 ** 0)
+print(a_1001101001)
+
+a = 0b1101
+print(a)
+
+print(bin(13))
+
+print(7 * 64 + 7 * 8)
+
+d =0
+print(~d)
+
+d = -10
+print(~d)
+
+a = 12
+print(bin(a))
+b = 56
+print(bin(b))
+print(a & b)
+
+
+flags = 5
+mask = 4
+
+if flags & mask == mask:
+    print("GOOD")
+else:
+    print("BAD")
+
+flags = 13
+mask = 5
+
+#Выключение битовых операций :
+flags = flags & ~mask
+print(flags)
+
+#flags = flags | mask
+#print(flags)
+
+flags |= mask
+print(flags)
+print(bin(25), bin(72 ))
+print(2**5)
+print(128+32+8+4+2)
+
+print(25 ^ 72)
+print(25 | 72)
+print(25 ^ ~72)
+print(-0b111111    )
+print(25 | ~72)
+
+x = 20
+x = x << 3
+print(bin(x))
+
+a = random.random()
+print(a)
+
+b = random.uniform(5, 9)
+print(b)
+
+c = random.randint(5,9)
+print(c)
+
+c1 = random.randrange(-5,5,2)
+print(c1)
+
+c2 = random.gauss(0, 3.5)
+print(c2)
+
+lst = [4,5,0,-1,10,76,3]
+
+a = random.choice(lst)
+print(a)
+
+random.shuffle(lst)
+print(lst)
+
+a = random.sample(lst, 5)
+print(a)
+random.seed(1)
+lst = [random.randint(0,10) for i in range(20)]
+print(lst)
+
+
+random.seed(674)
+
+lst = [random.randint(0,10) for i in range(20)]
+
+print(lst)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
