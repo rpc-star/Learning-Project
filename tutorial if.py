@@ -1198,7 +1198,17 @@ lst = [random.randint(0,10) for i in range(20)]
 
 print(lst)
 
+def test():
+    print("started")
 
+    while True:
+        x = yield
+        print("recv", x)
+
+a = test()
+print(a)
+next(a)
+print(a.send("pupa"))
 
 
 
