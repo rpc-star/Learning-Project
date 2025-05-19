@@ -9,8 +9,7 @@ import sad
 import pickle
 import random
 import pprint
-
-
+from typing import Union, Optional, Any, Final
 
 # if 5 <= x <= 7:
 # print("x в диапазоне <5> <7>")
@@ -1115,7 +1114,7 @@ print(bin(13))
 
 print(7 * 64 + 7 * 8)
 
-d =0
+d = 0
 print(~d)
 
 d = -10
@@ -1126,7 +1125,6 @@ print(bin(a))
 b = 56
 print(bin(b))
 print(a & b)
-
 
 flags = 5
 mask = 4
@@ -1139,23 +1137,23 @@ else:
 flags = 13
 mask = 5
 
-#Выключение битовых операций :
+# Выключение битовых операций :
 flags = flags & ~mask
 print(flags)
 
-#flags = flags | mask
-#print(flags)
+# flags = flags | mask
+# print(flags)
 
 flags |= mask
 print(flags)
-print(bin(25), bin(72 ))
-print(2**5)
-print(128+32+8+4+2)
+print(bin(25), bin(72))
+print(2 ** 5)
+print(128 + 32 + 8 + 4 + 2)
 
 print(25 ^ 72)
 print(25 | 72)
 print(25 ^ ~72)
-print(-0b111111    )
+print(-0b111111)
 print(25 | ~72)
 
 x = 20
@@ -1168,16 +1166,16 @@ print(a)
 b = random.uniform(5, 9)
 print(b)
 
-c = random.randint(5,9)
+c = random.randint(5, 9)
 print(c)
 
-c1 = random.randrange(-5,5,2)
+c1 = random.randrange(-5, 5, 2)
 print(c1)
 
 c2 = random.gauss(0, 3.5)
 print(c2)
 
-lst = [4,5,0,-1,10,76,3]
+lst = [4, 5, 0, -1, 10, 76, 3]
 
 a = random.choice(lst)
 print(a)
@@ -1188,15 +1186,15 @@ print(lst)
 a = random.sample(lst, 5)
 print(a)
 random.seed(1)
-lst = [random.randint(0,10) for i in range(20)]
+lst = [random.randint(0, 10) for i in range(20)]
 print(lst)
-
 
 random.seed(674)
 
-lst = [random.randint(0,10) for i in range(20)]
+lst = [random.randint(0, 10) for i in range(20)]
 
 print(lst)
+
 
 def test():
     print("started")
@@ -1205,33 +1203,112 @@ def test():
         x = yield
         print("recv", x)
 
+
 a = test()
 print(a)
 next(a)
 print(a.send("pupa"))
 
+cnt: int
+cnt = 5
+cnt = "sds"
+print(cnt)
+cnt: str = "ss"
 
 
+def mul2(x: int):
+    return x * 2
 
 
+res = mul2(2)
+print(res)
 
 
+def mul2(x: int):
+    return x * 2
 
 
+res = mul2(2)
+print(mul2.__annotations__)
 
 
+def mul2(x: int, y: float):
+    return x * 2 + y
 
 
+res = mul2(5, 6.6)
+print(mul2.__annotations__)
 
 
+def mul(x: int, y: float = 6.6):
+    return x * 2 + y
 
 
+res = mul(24)
+print(res, mul.__annotations__)
 
 
+def mul3(x: int, y: float = 6.6) -> float:
+    return x * 2 + y
 
 
+res = mul3(5, 5.5)
+print(res, mul3.__annotations__)
 
 
+def show_x(x: float) -> None:
+    print(f"x = {x}")
+
+
+res = show_x(1.1)
+print(res, show_x.__annotations__)
+
+
+def mul2(x: Union[int, float], y: Union[int, float] = 5.5) -> Union[int, float]:
+    return x * y
+
+
+res = mul2(5, 6.6)
+print(res, mul2.__annotations__)
+
+
+def mul2(x: int | float, y: int | float = 5.6) -> int | float:
+    return x * 2 + y
+
+
+res = mul2(5, 5.5)
+print(res, mul2.__annotations__)
+
+dijit = Union[int, float]
+
+
+def mul2(x: dijit, y: dijit = 5.6) -> dijit:
+    return (x + y) * 2
+
+
+res = mul2(5, 5)
+print(res, mul2.__annotations__)
+
+
+def show_x(x: float, descr: Optional[str] = None) -> None:
+    if descr:
+        print(f"{descr} {x}")
+    else:
+        print(f"x = {x}")
+
+
+res = show_x(1.1, 4)
+print(res, show_x.__annotations__)
+
+
+def show_x(x: Any, y: Optional[str] = None) -> None:
+    if y:
+        print(f"{x} {y}")
+    else:
+        print(f"x = {x}")
+
+res = show_x("pupa","lupa")
+print(res,show_x.__annotations__)
 
 
 
