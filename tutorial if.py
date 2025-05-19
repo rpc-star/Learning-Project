@@ -9,7 +9,7 @@ import sad
 import pickle
 import random
 import pprint
-from typing import Union, Optional, Any, Final
+from typing import Union, Optional, Any, Final, Callable
 
 # if 5 <= x <= 7:
 # print("x в диапазоне <5> <7>")
@@ -1307,8 +1307,180 @@ def show_x(x: Any, y: Optional[str] = None) -> None:
     else:
         print(f"x = {x}")
 
-res = show_x("pupa","lupa")
-print(res,show_x.__annotations__)
+
+res = show_x("pupa", "lupa")
+print(res, show_x.__annotations__)
+
+print(~8)
+print(bin(-9))
+print(~-9)
+
+lst: list[int] = [1, 2, 34]
+print(lst)
+
+book: tuple[str, str, int]
+book = ("Мёртвые души", "Гоголь Н.В", 250)
+print(book)
+
+books: tuple[float, ...]
+books = (1.1, 1.2, 3)
+print(books)
+
+words: dict[str, int] = {"one": 1, "two": 2, "three": 3}
+print(words)
+
+
+def get_positive(dig: list[int]) -> list[int]:
+    return list(filter(lambda x: x > 0, dig))
+
+
+print(get_positive([1, 2, -3, 4, -5]), get_positive.__annotations__)
+
+
+def get_positive(dig: list[int | float]) -> list[int | float]:
+    return list(filter(lambda x: x > 0, dig))
+
+
+print(get_positive([1, 2, -3, 4, -5, 6.6, 7.7, -8.0, 9.0]), get_positive.__annotations__)
+
+
+def get_positive(dig: Optional[list[int | float]] = None) -> list[int | float]:
+    if dig:
+        return list(filter(lambda x: x > 0, dig))
+    return []
+
+
+print(get_positive(), get_positive.__annotations__)
+
+
+def get_digit(flt: Callable[[int], bool], lst: list[int] = None) -> list[int]:
+    if lst is None:
+        return []
+    return list(filter(flt, lst))
+
+
+print(get_digit(lambda x: x % 2 == 0, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), get_digit.__annotations__)
+
+cmd = "top"
+
+match cmd:
+    case "top":
+        print("sas")
+    case "left":
+        print("kek")
+    case "right":
+        print("sees")
+    case _:
+        print("no")
+
+print("checking is over")
+
+cmd = "right"
+
+match cmd:
+    case "top":
+        print("vverh")
+    case "left":
+        print("vlevo")
+    case "right":
+        print("vpravo")
+    case _:
+        print("no")
+
+print("checking is over")
+
+cmd = "right"
+
+match cmd:
+    case command:
+        print(f"команда: {command}")
+
+
+print("over")
+
+cmd = "right"
+
+match cmd:
+    case "top":
+        print("vverh")
+    case command:
+        print(f"Komanda: {command}")
+
+print("over")
+
+cmd = "right"
+
+match cmd:
+    case "top":
+        print("vverh")
+    case _:
+        print(F'drugaya komanda')
+
+print("over")
+
+
+cmd = "top"
+
+match cmd:
+    case "top":
+        print("vverh")
+    case _:
+        print(F'drugaya komanda')
+
+print("over")
+
+
+cmd = "top "
+
+match cmd:
+    case str():
+        print(True)
+    case _:
+        print("Другой тип данных")
+
+print("over")
+
+
+cmd = "top"
+
+match cmd:
+    case str() as command:
+        print(f"strochnaya komanda {command}")
+    case _:
+        print("Ne")
+
+print("over")
+
+
+cmd = 5
+
+match cmd:
+    case str() as command:
+        print(f"strochnaya komanda {command}")
+    case type(int()) as command:
+        print(f"dasd komanda {command}")
+    case bool() as command:
+        print(f"булевая команда {command}")
+    case _:
+        print(f" хер знает какая команда")
+
+print("over")
+
+
+cmd = 2.4
+
+match cmd:
+    case str() as command if len(command) < 10 and command[0] == "р":
+        print(f"strochnaya komanda {command}")
+    case int() | float() as command if 0 < command < 9:
+        print(f"dasd komanda {command}")
+    case bool() as command:
+        print(f"<UNK> <UNK> {command}")
+    case _:
+        print(f"nicho")
+
+print("over")
+
 
 
 
