@@ -1395,7 +1395,6 @@ match cmd:
     case command:
         print(f"команда: {command}")
 
-
 print("over")
 
 cmd = "right"
@@ -1418,7 +1417,6 @@ match cmd:
 
 print("over")
 
-
 cmd = "top"
 
 match cmd:
@@ -1428,7 +1426,6 @@ match cmd:
         print(F'drugaya komanda')
 
 print("over")
-
 
 cmd = "top "
 
@@ -1440,7 +1437,6 @@ match cmd:
 
 print("over")
 
-
 cmd = "top"
 
 match cmd:
@@ -1450,7 +1446,6 @@ match cmd:
         print("Ne")
 
 print("over")
-
 
 cmd = 5
 
@@ -1466,7 +1461,6 @@ match cmd:
 
 print("over")
 
-
 cmd = 2.4
 
 match cmd:
@@ -1481,7 +1475,139 @@ match cmd:
 
 print("over")
 
+cmd = ("Поднятая целина", "Шолохов М.А.", 2500)
 
+
+match cmd:
+    case tuple() as book:
+        print(f"tuple: {book}")
+    case _:
+        print("ne")
+
+print("over")
+
+
+
+cmd = ("Поднятая целина", "Шолохов М.А.", 2500)
+
+
+match cmd:
+    case title, autor, price:
+        print(f"book: {title}, {autor}, {price}")
+    case _:
+        print("ne")
+
+print("over")
+
+cmd = ("Поднятая целина", "Шолохов М.А.", 2500,31242 )
+
+match cmd:
+    case title, autor, price, *_:
+        print(f"book: {title}, {autor}, {price}")
+    case _:
+        print("ne")
+
+print("over")
+
+
+cmd = ("Поднятая целина", "Шолохов М.А.", 2500,31242,3123,341 )
+
+match cmd:
+    case title, autor, price, *_ if len(cmd) < 6:
+        print(f"book: {title}, {autor}, {price}")
+    case _:
+        print("ne")
+
+print("over")
+
+cmd = ("Поднятая целина", "Шолохов М.А.", 2500,31242)
+
+match cmd:
+    case (str() as title, str() as autor, int() as price, *_) if len(cmd) < 6:
+        print(f"book: {title}, {autor}, {price}")
+    case _:
+        print("ne")
+
+print("over")
+
+
+cmd = ("Поднятая целина", "Шолохов М.А.", 2500.78,31242)
+
+match cmd:
+    case (str() as title, str() as autor, int() | float() as price, *_) if len(cmd) < 6:
+        print(f"book: {title}, {autor}, {price}")
+    case _:
+        print("ne")
+
+print("over")
+
+
+cmd = ("Поднятая целина", "Шолохов М.А.", 2500.78,31242)
+
+match cmd:
+    case (str() as title, str() as autor, int() | float() as price, *_) if len(cmd) < 6 and len(title) <= 100 and len(autor) <= 50:
+        print(f"book: {title}, {autor}, {price}")
+    case _:
+        print("ne")
+
+print("over")
+
+
+cmd = ("Поднятая целина", "Шолохов М.А.", 2500.78 ,31242,3123 )
+cmd = (1, "Поднятая целина", "Шолохов М.А.", 2500.78 ,31242)
+
+
+match cmd:
+    case (str(title), str(autor), int() | float() as price, *_) if len(cmd) < 6 and len(title) < 100 and len(autor) < 50:
+        print(f"book1: {title}, {autor}, {price}")
+    case (_, str(title), str(autor), int() | float() as price, *_) if len(cmd) < 6 and len(title) < 100 and len(autor) < 50:
+        print(f"book2 : {title}, {autor}, {price}")
+    case _:
+        print("ne")
+
+print("over")
+
+
+cmd = ("Поднятая целина", "Шолохов М.А.", 2500.78 ,31242,3123 )
+cmd = (1, "Поднятая целина", "Шолохов М.А.", 2500.78 ,31242)
+
+
+match cmd:
+    #case [[str(title), str(autor), int()|float() as price, *_]] | [(_, str(title), str(autor), int() | float() as price, *_)] if len(cmd) < 6 and len(title)<100 and len(autor) <50:
+     #   print(f"book1: {title}, {autor}, {price}")
+    case [autor, title, price, *_] | [_, autor, title, price, *_]:
+        print(f"book: {title}, {autor}, {price}")
+    case _:
+        print("ne")
+print("over")
+
+cmd = (1, "Поднятая целина", "Шолохов М.А.", 2500.78 ,31242)
+
+
+match cmd:
+    case (title, autor, price):
+        print(f"book: {title}, {autor}, {price}")
+    case (_, title, autor, price, year, *_):
+        print(f"book2: {title}, {autor}, {price}, {year}")
+    case _:
+        print("ne")
+
+print("over")
+
+
+cmd = (1, "Поднятая целина", "Шолохов М.А.", 2500.78 ,31242)
+
+match cmd:
+    case tuple():
+        print("ne")
+    case (title, autor, price):
+        print(f"book: {title}, {autor}, {price}")
+    case (_, title, autor, price, year, *_):
+        print(f"book2: {title}, {autor}, {price}, {year}")
+    case _:
+        print("ne")
+
+print("over")
 
 
 
