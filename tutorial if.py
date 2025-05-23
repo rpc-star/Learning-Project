@@ -1611,6 +1611,29 @@ print("over")
 
 
 
+req = {'url': 'http:// prorprorp.ru/', 'method' : 'GET', 'timeout' : 1000}
+
+
+match req:
+    case {'url':url, 'method': method}:
+        print(f"Значение url: {url}, method: {method}")
+    case _:
+        print("ne")
+
+print("over")
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
