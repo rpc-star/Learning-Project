@@ -1622,18 +1622,104 @@ match req:
 
 print("over")
 
+req = {'url': 'http:// prorprorp.ru/', 'method' : 'GET', 'timeout' : 1000}
 
 
+match req:
+    case {'url': str() as url, 'method': str() as method}:
+        print(f"url: {url}, method: {method}")
+    case _:
+        print("ne")
+
+print("over")
 
 
+req = {'url': 'http:// prorprorp.ru/', 'method' : 'GET', 'timeout' : 1000}
+
+match req:
+    case {'url': str(url), 'method': str() as method, 'timeout': 1000}:
+        print(f"Запрос: url: {url}, method: {method}, timeout: {1000}")
+    case _:
+        print("ne")
+
+print("over")
+
+req = {'url': 'http:// prorprorp.ru/', 'method' : 'GET', 'timeout' : 2000}
 
 
+match req:
+    case {'url': str() as url, 'method' : str(method), 'timeout': 1000 | 2000}:
+        print(f"url: {url}, method: {method}, timeout: {2000}")
+    case _:
+        print("ne")
+
+print("over")
+
+req = {'url': 'http:// prorprorp.ru/', 'method' : 'GET', 'timeout' : 2000}
+
+match req:
+    case {'url': str(url), 'method': str(method)} if len(req) < 3:
+        print(f"url: {url}, method: {method}")
+    case _:
+        print("ne")
+
+print("over")
 
 
+req = {'url': 'http://prorprorp.ru/', 'method' : 'GET', 'timeout' : 2000}
 
 
+match req:
+    case {'url': str() as url, 'method': str() as method, 'timeout': 1000 | 2000, **kwargs} if len(kwargs) <=2:
+        print(f"url: {url}, method: {method}")
+    case _:
+        print("ne")
+
+print("over")
 
 
+req = {'url': 'http://prorprorp.ru/', 'method' : 'GET', 'timeout': 2000}
+
+match req:
+    case {'url': str(url), 'method': str(method), **kwargs} if not kwargs:
+        print(f"url: {url}, method: {method}")
+    case _:
+        print("ne")
+
+print("over")
+
+
+json = {'id': 2, 'type': 'list', 'data': (1,2,3), 'access': True, 'date': '01.01.2023'}
+
+match json:
+    case {'type':'list', 'data': lst}:
+        print(f'type: {list}, data: {lst}')
+    case _:
+        print("ne")
+
+print("over")
+
+json = {'id': 2, 'access': True, 'type': 'list', 'info': ['01.01.2023', {'login': '123', 'email': 'email@m.ru'}, True, 1000]}
+
+match json:
+    case {'access': access, 'info': [_,{'email' : email},*_]}:
+        print(f'access: {access}, info: {email}')
+    case _:
+        print("ne")
+
+print("over")
+
+
+keys = {1,2,3}
+
+
+match keys:
+    case set() as abc:
+        print(f'set: {abc}')
+    case _:
+        print("ne")
+
+print("over")
 
 
 
