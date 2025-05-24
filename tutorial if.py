@@ -10,6 +10,10 @@ import pickle
 import random
 import pprint
 from typing import Union, Optional, Any, Final, Callable
+import consts
+#CMD_3: Final = 3
+#CMD_5: Final = 5
+
 
 # if 5 <= x <= 7:
 # print("x в диапазоне <5> <7>")
@@ -1477,7 +1481,6 @@ print("over")
 
 cmd = ("Поднятая целина", "Шолохов М.А.", 2500)
 
-
 match cmd:
     case tuple() as book:
         print(f"tuple: {book}")
@@ -1486,10 +1489,7 @@ match cmd:
 
 print("over")
 
-
-
 cmd = ("Поднятая целина", "Шолохов М.А.", 2500)
-
 
 match cmd:
     case title, autor, price:
@@ -1499,7 +1499,7 @@ match cmd:
 
 print("over")
 
-cmd = ("Поднятая целина", "Шолохов М.А.", 2500,31242 )
+cmd = ("Поднятая целина", "Шолохов М.А.", 2500, 31242)
 
 match cmd:
     case title, autor, price, *_:
@@ -1509,8 +1509,7 @@ match cmd:
 
 print("over")
 
-
-cmd = ("Поднятая целина", "Шолохов М.А.", 2500,31242,3123,341 )
+cmd = ("Поднятая целина", "Шолохов М.А.", 2500, 31242, 3123, 341)
 
 match cmd:
     case title, autor, price, *_ if len(cmd) < 6:
@@ -1520,7 +1519,7 @@ match cmd:
 
 print("over")
 
-cmd = ("Поднятая целина", "Шолохов М.А.", 2500,31242)
+cmd = ("Поднятая целина", "Шолохов М.А.", 2500, 31242)
 
 match cmd:
     case (str() as title, str() as autor, int() as price, *_) if len(cmd) < 6:
@@ -1530,8 +1529,7 @@ match cmd:
 
 print("over")
 
-
-cmd = ("Поднятая целина", "Шолохов М.А.", 2500.78,31242)
+cmd = ("Поднятая целина", "Шолохов М.А.", 2500.78, 31242)
 
 match cmd:
     case (str() as title, str() as autor, int() | float() as price, *_) if len(cmd) < 6:
@@ -1541,48 +1539,45 @@ match cmd:
 
 print("over")
 
-
-cmd = ("Поднятая целина", "Шолохов М.А.", 2500.78,31242)
+cmd = ("Поднятая целина", "Шолохов М.А.", 2500.78, 31242)
 
 match cmd:
-    case (str() as title, str() as autor, int() | float() as price, *_) if len(cmd) < 6 and len(title) <= 100 and len(autor) <= 50:
+    case (str() as title, str() as autor, int() | float() as price, *_) if len(cmd) < 6 and len(title) <= 100 and len(
+            autor) <= 50:
         print(f"book: {title}, {autor}, {price}")
     case _:
         print("ne")
 
 print("over")
 
-
-cmd = ("Поднятая целина", "Шолохов М.А.", 2500.78 ,31242,3123 )
-cmd = (1, "Поднятая целина", "Шолохов М.А.", 2500.78 ,31242)
-
+cmd = ("Поднятая целина", "Шолохов М.А.", 2500.78, 31242, 3123)
+cmd = (1, "Поднятая целина", "Шолохов М.А.", 2500.78, 31242)
 
 match cmd:
-    case (str(title), str(autor), int() | float() as price, *_) if len(cmd) < 6 and len(title) < 100 and len(autor) < 50:
+    case (str(title), str(autor), int() | float() as price, *_) if len(cmd) < 6 and len(title) < 100 and len(
+            autor) < 50:
         print(f"book1: {title}, {autor}, {price}")
-    case (_, str(title), str(autor), int() | float() as price, *_) if len(cmd) < 6 and len(title) < 100 and len(autor) < 50:
+    case (_, str(title), str(autor), int() | float() as price, *_) if len(cmd) < 6 and len(title) < 100 and len(
+            autor) < 50:
         print(f"book2 : {title}, {autor}, {price}")
     case _:
         print("ne")
 
 print("over")
 
-
-cmd = ("Поднятая целина", "Шолохов М.А.", 2500.78 ,31242,3123 )
-cmd = (1, "Поднятая целина", "Шолохов М.А.", 2500.78 ,31242)
-
+cmd = ("Поднятая целина", "Шолохов М.А.", 2500.78, 31242, 3123)
+cmd = (1, "Поднятая целина", "Шолохов М.А.", 2500.78, 31242)
 
 match cmd:
-    #case [[str(title), str(autor), int()|float() as price, *_]] | [(_, str(title), str(autor), int() | float() as price, *_)] if len(cmd) < 6 and len(title)<100 and len(autor) <50:
-     #   print(f"book1: {title}, {autor}, {price}")
+    # case [[str(title), str(autor), int()|float() as price, *_]] | [(_, str(title), str(autor), int() | float() as price, *_)] if len(cmd) < 6 and len(title)<100 and len(autor) <50:
+    #   print(f"book1: {title}, {autor}, {price}")
     case [autor, title, price, *_] | [_, autor, title, price, *_]:
         print(f"book: {title}, {autor}, {price}")
     case _:
         print("ne")
 print("over")
 
-cmd = (1, "Поднятая целина", "Шолохов М.А.", 2500.78 ,31242)
-
+cmd = (1, "Поднятая целина", "Шолохов М.А.", 2500.78, 31242)
 
 match cmd:
     case (title, autor, price):
@@ -1594,8 +1589,7 @@ match cmd:
 
 print("over")
 
-
-cmd = (1, "Поднятая целина", "Шолохов М.А.", 2500.78 ,31242)
+cmd = (1, "Поднятая целина", "Шолохов М.А.", 2500.78, 31242)
 
 match cmd:
     case tuple():
@@ -1609,21 +1603,17 @@ match cmd:
 
 print("over")
 
-
-
-req = {'url': 'http:// prorprorp.ru/', 'method' : 'GET', 'timeout' : 1000}
-
+req = {'url': 'http:// prorprorp.ru/', 'method': 'GET', 'timeout': 1000}
 
 match req:
-    case {'url':url, 'method': method}:
+    case {'url': url, 'method': method}:
         print(f"Значение url: {url}, method: {method}")
     case _:
         print("ne")
 
 print("over")
 
-req = {'url': 'http:// prorprorp.ru/', 'method' : 'GET', 'timeout' : 1000}
-
+req = {'url': 'http:// prorprorp.ru/', 'method': 'GET', 'timeout': 1000}
 
 match req:
     case {'url': str() as url, 'method': str() as method}:
@@ -1633,8 +1623,7 @@ match req:
 
 print("over")
 
-
-req = {'url': 'http:// prorprorp.ru/', 'method' : 'GET', 'timeout' : 1000}
+req = {'url': 'http:// prorprorp.ru/', 'method': 'GET', 'timeout': 1000}
 
 match req:
     case {'url': str(url), 'method': str() as method, 'timeout': 1000}:
@@ -1644,18 +1633,17 @@ match req:
 
 print("over")
 
-req = {'url': 'http:// prorprorp.ru/', 'method' : 'GET', 'timeout' : 2000}
-
+req = {'url': 'http:// prorprorp.ru/', 'method': 'GET', 'timeout': 2000}
 
 match req:
-    case {'url': str() as url, 'method' : str(method), 'timeout': 1000 | 2000}:
+    case {'url': str() as url, 'method': str(method), 'timeout': 1000 | 2000}:
         print(f"url: {url}, method: {method}, timeout: {2000}")
     case _:
         print("ne")
 
 print("over")
 
-req = {'url': 'http:// prorprorp.ru/', 'method' : 'GET', 'timeout' : 2000}
+req = {'url': 'http:// prorprorp.ru/', 'method': 'GET', 'timeout': 2000}
 
 match req:
     case {'url': str(url), 'method': str(method)} if len(req) < 3:
@@ -1665,20 +1653,17 @@ match req:
 
 print("over")
 
-
-req = {'url': 'http://prorprorp.ru/', 'method' : 'GET', 'timeout' : 2000}
-
+req = {'url': 'http://prorprorp.ru/', 'method': 'GET', 'timeout': 2000}
 
 match req:
-    case {'url': str() as url, 'method': str() as method, 'timeout': 1000 | 2000, **kwargs} if len(kwargs) <=2:
+    case {'url': str() as url, 'method': str() as method, 'timeout': 1000 | 2000, **kwargs} if len(kwargs) <= 2:
         print(f"url: {url}, method: {method}")
     case _:
         print("ne")
 
 print("over")
 
-
-req = {'url': 'http://prorprorp.ru/', 'method' : 'GET', 'timeout': 2000}
+req = {'url': 'http://prorprorp.ru/', 'method': 'GET', 'timeout': 2000}
 
 match req:
     case {'url': str(url), 'method': str(method), **kwargs} if not kwargs:
@@ -1688,30 +1673,28 @@ match req:
 
 print("over")
 
-
-json = {'id': 2, 'type': 'list', 'data': (1,2,3), 'access': True, 'date': '01.01.2023'}
+json = {'id': 2, 'type': 'list', 'data': (1, 2, 3), 'access': True, 'date': '01.01.2023'}
 
 match json:
-    case {'type':'list', 'data': lst}:
+    case {'type': 'list', 'data': lst}:
         print(f'type: {list}, data: {lst}')
     case _:
         print("ne")
 
 print("over")
 
-json = {'id': 2, 'access': True, 'type': 'list', 'info': ['01.01.2023', {'login': '123', 'email': 'email@m.ru'}, True, 1000]}
+json = {'id': 2, 'access': True, 'type': 'list',
+        'info': ['01.01.2023', {'login': '123', 'email': 'email@m.ru'}, True, 1000]}
 
 match json:
-    case {'access': access, 'info': [_,{'email' : email},*_]}:
+    case {'access': access, 'info': [_, {'email': email}, *_]}:
         print(f'access: {access}, info: {email}')
     case _:
         print("ne")
 
 print("over")
 
-
-keys = {1,2,3}
-
+keys = {1, 2, 3}
 
 match keys:
     case set() as abc:
@@ -1720,6 +1703,111 @@ match keys:
         print("ne")
 
 print("over")
+
+req = {'server': '127.0.0.1', 'login': 'root', 'password': '1234', 'port': 24}
+
+
+def connect_db(connect: dict) -> str:
+    match connect:
+        case {'server': host, 'login': login, 'password': pas, 'port': port}:
+            return f'connection: {host}@{login}.{pas}:{port}'
+        case {'server': host, 'login': login, 'password': pas}:
+            port = 22
+            return f'connection: {host}@{login}.{pas}:{port}'
+        case _:
+            return "error connection"
+
+
+res = connect_db(req)
+print(res, connect_db.__annotations__)
+
+
+def connect_db(connect: dict) -> str:
+    match connect:
+        case {'server': host, "login": login, 'password': pas, 'port': port}:
+            pass
+        case {'server': host, 'login': login, "password": pas}:
+            port = 22
+        case _:
+            return "error connection"
+    return f"connection: {host}@{login}.{pas}:{port}"
+
+
+res = connect_db(req)
+print(res, connect_db.__annotations__)
+
+book_1 = ("Балакирев", "python", 2022)
+book_2 = ['Балакирев', 'pythonOOP', "2022", 3432.27]
+book_3 = {'autor': 'Балакирев', 'title': 'Нейросети', 'year': 1799}
+book_4 = {'autor': 'Балакирев', 'title': 'Keran + Tensorflow', 'price': 5430, 'year': 2020}
+
+
+def get_tuple(book: Any, price_1 = None) -> tuple:
+    match book:
+        case {'autor': autor_1, 'title': title_1, 'price': price_1, 'year': int(year_1)}:
+            pass
+        case autor_1, title_1, int(year_1):
+            pass
+        case autor_1, title_1, int(year_1), price_1:
+            pass
+        case {'autor': autor_1, 'title': title_1, 'year': int(year_1)}:
+            pass
+        case _:
+            return "error"
+    return (autor_1, title_1, year_1, price_1) if 1800 <= year_1 <=3000 else "error"
+
+
+res = get_tuple(book_1)
+res2 = get_tuple(book_2)
+res3 = get_tuple(book_3)
+res4 = get_tuple(book_4)
+print(res, res2, res3, res4, sep="\n")
+
+
+cmd = 1
+
+match cmd:
+    case 1|5  as num:
+        print(f'{num}')
+    case _:
+        print("error")
+
+cmd = 5
+
+match cmd:
+    case int() as x if x == consts.CMD_3:
+        print(x)
+    case int() as x if x == consts.CMD_5:
+        print(x)
+
+cmd = 3
+
+match cmd:
+    case consts.CMD_3:
+        print("3")
+    case consts.CMD_5:
+        print("5")
+
+class Consts:
+    CMD_3 = 3
+    CMD_5 = 5
+
+
+cmd = 5
+
+match cmd:
+    case Consts.CMD_3:
+        print("3")
+    case Consts.CMD_5:
+        print("5")
+
+
+
+
+
+
+
+
 
 
 
