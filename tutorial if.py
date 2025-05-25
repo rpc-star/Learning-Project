@@ -11,8 +11,8 @@ import random
 import pprint
 from typing import Union, Optional, Any, Final, Callable
 import consts
-#CMD_3: Final = 3
-#CMD_5: Final = 5
+# CMD_3: Final = 3
+# CMD_5: Final = 5
 
 
 # if 5 <= x <= 7:
@@ -1742,7 +1742,7 @@ book_3 = {'autor': 'Балакирев', 'title': 'Нейросети', 'year': 
 book_4 = {'autor': 'Балакирев', 'title': 'Keran + Tensorflow', 'price': 5430, 'year': 2020}
 
 
-def get_tuple(book: Any, price_1 = None) -> tuple:
+def get_tuple(book: Any, price_1=None) -> tuple:
     match book:
         case {'autor': autor_1, 'title': title_1, 'price': price_1, 'year': int(year_1)}:
             pass
@@ -1754,7 +1754,7 @@ def get_tuple(book: Any, price_1 = None) -> tuple:
             pass
         case _:
             return "error"
-    return (autor_1, title_1, year_1, price_1) if 1800 <= year_1 <=3000 else "error"
+    return (autor_1, title_1, year_1, price_1) if 1800 <= year_1 <= 3000 else "error"
 
 
 res = get_tuple(book_1)
@@ -1763,11 +1763,10 @@ res3 = get_tuple(book_3)
 res4 = get_tuple(book_4)
 print(res, res2, res3, res4, sep="\n")
 
-
 cmd = 1
 
 match cmd:
-    case 1|5  as num:
+    case 1 | 5 as num:
         print(f'{num}')
     case _:
         print("error")
@@ -1788,6 +1787,7 @@ match cmd:
     case consts.CMD_5:
         print("5")
 
+
 class Consts:
     CMD_3 = 3
     CMD_5 = 5
@@ -1801,15 +1801,54 @@ match cmd:
     case Consts.CMD_5:
         print("5")
 
+if d := 77:
+    print(d)
+
+#if d := input():
+ #   print(d)
+#if (d := int(input())) > 0:
+ #   print(d)
+
+#s = 0
+#d = int(input())
+#while d != -1:
+ #   s += d
+  #  d = int(input())
+
+#print(s)
 
 
+#s = 0
+#while (d := int(input())) != -1:
+ #   s += d
+#print(s)
+
+n = 17
+
+lst = [d for x in range(n) if (d := x * x) < n]
+print(lst)
+
+n = 10
+
+lst = [x*x for x in range(n) if x*x < n]
+print(lst)
+
+lst2d = [
+    row1 := [1,2,3],
+    row2 := [4,5,6],
+    row3 := [7,8,9]
+]
+
+row2[1] = 100
+
+print(*lst2d, sep ='\n')
+print()
 
 
-
-
-
-
-
+l = [2,4,7,3,14,19]
+for i in l:
+    d = lambda x: x % 2 == 1
+    print(d(i))
 
 
 
