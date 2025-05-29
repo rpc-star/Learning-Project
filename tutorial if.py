@@ -13,7 +13,7 @@ from typing import Union, Optional, Any, Final, Callable
 import consts
 # CMD_3: Final = 3
 # CMD_5: Final = 5
-
+import re
 
 # if 5 <= x <= 7:
 # print("x в диапазоне <5> <7>")
@@ -1804,24 +1804,24 @@ match cmd:
 if d := 77:
     print(d)
 
-#if d := input():
- #   print(d)
-#if (d := int(input())) > 0:
- #   print(d)
+# if d := input():
+#   print(d)
+# if (d := int(input())) > 0:
+#   print(d)
 
-#s = 0
-#d = int(input())
-#while d != -1:
- #   s += d
-  #  d = int(input())
+# s = 0
+# d = int(input())
+# while d != -1:
+#   s += d
+#  d = int(input())
 
-#print(s)
+# print(s)
 
 
-#s = 0
-#while (d := int(input())) != -1:
- #   s += d
-#print(s)
+# s = 0
+# while (d := int(input())) != -1:
+#   s += d
+# print(s)
 
 n = 17
 
@@ -1830,25 +1830,59 @@ print(lst)
 
 n = 10
 
-lst = [x*x for x in range(n) if x*x < n]
+lst = [x * x for x in range(n) if x * x < n]
 print(lst)
 
 lst2d = [
-    row1 := [1,2,3],
-    row2 := [4,5,6],
-    row3 := [7,8,9]
+    row1 := [1, 2, 3],
+    row2 := [4, 5, 6],
+    row3 := [7, 8, 9]
 ]
 
 row2[1] = 100
 
-print(*lst2d, sep ='\n')
+print(*lst2d, sep='\n')
 print()
 
-
-l = [2,4,7,3,14,19]
+l = [2, 4, 7, 3, 14, 19]
 for i in l:
     d = lambda x: x % 2 == 1
     print(d(i))
+
+text = "Карта map и объект bitmap - это разные вещи"
+
+natch = re.findall(r"\bmap\b", text)
+print(natch)
+
+txt = "Еда, беда, победа"
+match = re.findall(r'\b[еЕ]д[ау]\b ', txt)
+print(match)
+
+txt = "Еда, беда, 55 4победа"
+
+match = re.findall(r'[0123456789][0123456789]', txt)
+print(match)
+
+
+match = re.findall(r'[^0-9]', txt)
+print(match)
+
+
+
+match = re.findall(r'\d', txt)
+print(match)
+
+match = re.findall(r'.', txt)
+print(match)
+
+txt = "Еда, беда, -5 55 победа"
+match = re.findall(r'\w', txt, re.ASCII)
+print(match)
+
+txt = '0xf, 0xa, 0x5'
+
+match = re.findall(r'0x[\da-fA-F]',txt)
+print(match)
 
 
 
