@@ -1884,8 +1884,106 @@ txt = '0xf, 0xa, 0x5'
 match = re.findall(r'0x[\da-fA-F]',txt)
 print(match)
 
+txt = "Google, Gooogle, Goooooogle"
 
+match = re.findall(r'o{2,5}', txt)
+print(match)
 
+txt = "Google, Gooogle, Goooooogle"
 
+match = re.findall(r'o{2,5}?', txt)
+print(match)
 
+match = re.findall(r'o{1,}', txt)
+print(match)
 
+match = re.findall(r'o{,2}',txt)
+print(match)
+
+txt = "Google, Gooogle, Goooooogle"
+
+match = re.findall(r'Go{,4}gle', txt)
+print(match)
+
+phone = '89123456789'
+
+match = re.findall(r'8\d{10}', phone)
+print(match)
+
+txt = "стеклянный, стекляный"
+match = re.findall(r'стеклянн?ый', txt)
+print(match)
+
+txt = "autor=Пушкин А.С.; title = Евгений Онегин; price=200; year= 2001"
+
+match = re.findall(r'\w+\s*=\s*[^;]+', txt)
+print(match)
+
+txt = "autor=Пушкин А.С.; title = Евгений Онегин; price=200; year= 2001"
+
+match = re.findall(r'(\w+)\s*=\s*([^;]+)', txt)
+print(match)
+
+txt = "<p>Картинка <img src='bg.jpg'> в тексте </p>"
+
+match = re.findall(r'<img.*>', txt)
+print(match)
+
+match = re.findall(r'<img.*?>', txt)
+print(match)
+
+match = re.findall(r'<img[^>]*>', txt)
+print(match)
+
+match = re.findall(r'<img\s+[^>]*?src\s*=\s*[^>]+>', txt)
+print(match)
+
+txt = "<p>Картинка <img alt='картинка' src='bg.jpg' > в тексте </p>"
+
+match = re.findall(r'<img\s*[^>]*?src\s*=\s*.+?>', txt)
+print(match)
+
+txt = 'lat = 5, lon=7'
+
+match = re.findall(r'\w+\s*=\s*\d+', txt)
+print(match)
+
+txt = 'lan = 5, lon=7'
+
+match = re.findall(r'(?:lan|lon)\s*=\s*\d+', txt)
+print(match)
+
+txt = 'lan = 5, lon=7, a = 6'
+
+match = re.findall(r'(?:lan|lon|a)\s*=\s*\d+', txt)
+print(match)
+
+txt = 'lan = 5, lon=7, a = 6'
+
+match = re.findall(r'(lan|lon)\s*=\s*\d+', txt)
+print(match)
+
+txt = 'lan = 5, lon=7'
+
+match = re.findall(r'((lan|lon)\s*=\s*\d+)', txt)
+print(match)
+
+txt = 'lan = 5, lon=7'
+
+match = re.findall(r'(lan|lon)\s*=\s*(\d+)', txt)
+print(match)
+
+txt = "<p>Картинка <img alt='картинка' src='bg.jpg'> в тексте </p>"
+
+match = re.findall(r"<img\s+[^>]*?src=[\"'](.+?)[\"']>", txt)
+print(match)
+
+txt = "<p>Картинка <img src='bg.jpg\'> в тексте </p>"
+
+match = re.findall(r"<img\s+[^>]*?src=([\"'])(.+?)\1", txt)
+print(match)
+
+txt = "<p>Картинка <img src='bg.jpg\'> в тексте </p>"
+
+match = re.findall(r"<img\s*[^>]*?src=(?P<q>[\"'])(.+?)(?P=q)", txt)
+print(match)
