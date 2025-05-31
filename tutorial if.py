@@ -1987,3 +1987,115 @@ txt = "<p>Картинка <img src='bg.jpg\'> в тексте </p>"
 
 match = re.findall(r"<img\s*[^>]*?src=(?P<q>[\"'])(.+?)(?P=q)", txt)
 print(match)
+
+txt = "подоходный налог"
+
+match = re.findall(r'прибыль|обретение|доход', txt)
+print(match)
+
+txt = "подоходный налог, доход"
+
+match = re.findall(r'(\b(прибыль|обретение|доход)\b)', txt)
+print(match)
+
+match = re.findall(r'\b(?:прибыль|обретение|доход)\b', txt)
+print(match)
+
+
+txt = """<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Уроки по Python</title>
+</head>
+<body>
+<script type="text/javascript">
+let o = documeent.getelemetById('id_div');
+console.log(obj);
+</script>
+</body>
+<html>"""
+
+match = re.findall(r'let\s+o\s+=\s+[^;]+', txt)
+print(match)
+
+match = re.findall(r'^<script.*?>([\w\W]+)(?=</script>)', txt, re.MULTILINE)
+print(match)
+
+match = re.findall(r"^<script.*?>([\w\W]+)(?<=</script>)", txt, re.MULTILINE)
+print(match)
+
+txt = """<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Уроки по Python</title>
+</head>
+<body>
+<script type="text/javascript">
+let o = documeent.getelemetById('id_div');
+console.log(obj);
+</script>
+</body>
+<html>"""
+
+match = re.findall(r"([-\w]+)[ \t]*=[ \t]*[\"']([^\"']+)[\"'](?<![ \t])", txt, re.MULTILINE)
+#print(match)
+
+txt = """<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Уроки по Python</title>
+</head>
+<body>
+<p align=center>Hello World!</p>
+</body>
+<html>"""
+
+match = re.findall(r"([-\w]+)[ \t]*=[ \t]*(?P<q>[\"'])?(?(q)([^\"']+)(?<![ \t])|([^ \t>]+))", txt, re.MULTILINE)
+print(match)
+
+txt = """<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Уроки по Python</title>
+</head>
+<body>
+<p align=center>Hello World!</p>
+</body>
+<html>"""
+
+match = re.findall(r"""([-\w]+)                           # выделяем атрибут
+                  [ \t]*=[ \t]*                           # определяем знаки перед равно
+                  (?P<q>[\"'])?                           # проверяем наличие кавычки
+                  (?(q)([^\"']+)(?<![ \t])|([^ \t>]+))    # выделяем артибут
+            """,
+            txt, re.MULTILINE|re.VERBOSE)
+
+print(match)
+
+
+txt = "Python. python, PYTHON"
+
+match = re.findall(r"(?im)python", txt)
+print(match)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
