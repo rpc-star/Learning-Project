@@ -2086,6 +2086,13 @@ txt = "Python. python, PYTHON"
 match = re.findall(r"(?im)python", txt)
 print(match)
 
+text = "<font color=#CC0000>"
+
+match =re.search(r"(\w+)=(#[\da-zA-Z]{6})\b", text)
+print(match)
+
+
+
 
 
 
