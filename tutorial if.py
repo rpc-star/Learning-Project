@@ -2091,18 +2091,38 @@ text = "<font color=#CC0000>"
 match =re.search(r"(\w+)=(#[\da-zA-Z]{6})\b", text)
 print(match)
 
+print(match.group(0))
 
+print(match.group(1))
 
+print(match.group(2))
 
+print(match.group(0,1,2))
 
+print(match.groups())
 
+print(match.lastindex)
 
+print(match.start(1))
 
+print(match.end(1))
 
+print(match.span(0))
 
+print(match.span(1))
 
+print(match.span(2))
 
+print(match.endpos)
 
+print(match.pos)
 
+print(match.re)
+
+print(match.string)
+
+match = re.search(r"(?P<keys>\w+)=(?P<values>#[\da-zA-Z]{6})\b", text)
+
+print(match.groupdict())
 
 
