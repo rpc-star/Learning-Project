@@ -1863,11 +1863,8 @@ txt = "Еда, беда, 55 4победа"
 match = re.findall(r'[0123456789][0123456789]', txt)
 print(match)
 
-
 match = re.findall(r'[^0-9]', txt)
 print(match)
-
-
 
 match = re.findall(r'\d', txt)
 print(match)
@@ -1881,7 +1878,7 @@ print(match)
 
 txt = '0xf, 0xa, 0x5'
 
-match = re.findall(r'0x[\da-fA-F]',txt)
+match = re.findall(r'0x[\da-fA-F]', txt)
 print(match)
 
 txt = "Google, Gooogle, Goooooogle"
@@ -1897,7 +1894,7 @@ print(match)
 match = re.findall(r'o{1,}', txt)
 print(match)
 
-match = re.findall(r'o{,2}',txt)
+match = re.findall(r'o{,2}', txt)
 print(match)
 
 txt = "Google, Gooogle, Goooooogle"
@@ -2001,7 +1998,6 @@ print(match)
 match = re.findall(r'\b(?:прибыль|обретение|доход)\b', txt)
 print(match)
 
-
 txt = """<!DOCTYPE html>
 <html>
 <head>
@@ -2042,7 +2038,7 @@ console.log(obj);
 <html>"""
 
 match = re.findall(r"([-\w]+)[ \t]*=[ \t]*[\"']([^\"']+)[\"'](?<![ \t])", txt, re.MULTILINE)
-#print(match)
+# print(match)
 
 txt = """<!DOCTYPE html>
 <html>
@@ -2076,10 +2072,9 @@ match = re.findall(r"""([-\w]+)                           # выделяем а�
                   (?P<q>[\"'])?                           # проверяем наличие кавычки
                   (?(q)([^\"']+)(?<![ \t])|([^ \t>]+))    # выделяем артибут
             """,
-            txt, re.MULTILINE|re.VERBOSE)
+                   txt, re.MULTILINE | re.VERBOSE)
 
 print(match)
-
 
 txt = "Python. python, PYTHON"
 
@@ -2088,7 +2083,7 @@ print(match)
 
 text = "<font color=#CC0000>"
 
-match =re.search(r"(\w+)=(#[\da-zA-Z]{6})\b", text)
+match = re.search(r"(\w+)=(#[\da-zA-Z]{6})\b", text)
 print(match)
 
 print(match.group(0))
@@ -2097,7 +2092,7 @@ print(match.group(1))
 
 print(match.group(2))
 
-print(match.group(0,1,2))
+print(match.group(0, 1, 2))
 
 print(match.groups())
 
@@ -2124,5 +2119,96 @@ print(match.string)
 match = re.search(r"(?P<keys>\w+)=(?P<values>#[\da-zA-Z]{6})\b", text)
 
 print(match.groupdict())
+
+text = "<font color=#CC0000>"
+
+match = re.search(r"(?P<keys>\w+)=(?P<values>#[\da-fA-F]{6})\b", text)
+print(match.lastgroup)
+
+match = re.search(r"(?P<keys>\w+)=#(?P<values>[\da-fA-F]{6})\b", text)
+print(match.expand(r"\g<keys>:\g<values>"))
+
+print(match.expand(r"\1:\2"))
+
+text = "<font color=#CC0000 bf=#FFFFFF>"
+match = re.search(r"(?P<keys>\w+)=#(?P<values>[\da-fA-F]{6})\b", text)
+print(match)
+
+text = "<font color=#CC0000 bf=#FFFFFF>"
+
+for match in re.finditer(r"(?P<keys>\w+)=#(?P<values>[\da-fA-F]{6})\b", text):
+    print(match)
+
+text = "<font color=#CC0000 bf=#FFFFFF>"
+
+match = re.findall(r"(?P<keys>\w+)=#(?P<values>[\da-fA-F]{6})\b", text)
+print(match)
+
+txt = "+7(854)232-55-66"
+
+m = re.match(r"\+7\(\d{3}\)\d{3}-\d{2}-\d{2}", txt)
+print(m)
+
+txt = """<point lon="40.8283" lat="52.2345" />
+<point lon="40.8283" lat="52.2345" />: <point lon="40.8283" lat="52.2345" />
+<point lon="40.8283" lat="52.2345" />, <point lon="40.8283" lat="52.2345" />
+"""
+
+ar = re.split(r"[\n;,]+", txt)
+print(ar)
+
+txt = """Москва
+Казань
+Тверь
+Самара
+Уфа"""
+
+list = re.sub(r"\s*(\w+)\s*", r"<option>\1</option>\n", txt)
+print(list)
+
+count = 0
+
+
+def replFind(m):
+    global count
+    count += 1
+    return f"<option value='{count}'>{m.group(1)}</option>\n"
+
+
+list = re.sub(r"\s*(\w+)\s*", replFind, txt)
+print(list)
+
+txt = """Москва
+Казань
+Тверь
+Самара
+Уфа"""
+
+list, total = re.subn(r"\s*(\w+)\s*", r"<option>\1</option>\n", txt)
+print(list, total)
+
+txt = """Москва
+Казань
+Тверь
+Самара
+Уфа"""
+
+count = 0
+def replFind(m):
+    global count
+    count += 1
+    return f"<option value='{count}'>{m.group(1)}</option>\n"
+
+rx = re.compile(r"\s*(\w+)\s*")
+list, total = rx.subn(r"<option>\1</option>\n", txt)
+list2 = rx.sub(replFind, txt)
+print(list, total, list2, sep="\n")
+
+
+
+
+
+
+
 
 
